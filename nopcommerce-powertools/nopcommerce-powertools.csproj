@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.0" />
-    <PackageReference Include="NetVips" Version="1.1.0" />
+    <PackageReference Include="NetVips" Version="1.2.4" />
     <PackageReference Include="NetVips.Native.win-x64" Version="8.8.4" />
   </ItemGroup>
 
