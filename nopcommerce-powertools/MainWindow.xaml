@@ -1,0 +1,39 @@
+﻿<Window x:Class="RoofrackDataManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RoofrackDataManager"
+        mc:Ignorable="d"
+        Title="Nopcommerce Powertools" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TabControl Grid.Column="0">
+            <TabItem Header="Images">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox Name="textBoxPath" Margin="67,42,23,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="22"/>
+                    <Label Content="Path: " HorizontalAlignment="Left" Margin="23,38,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Load Images" HorizontalAlignment="Left" Margin="67,69,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+                    <Button Name="removeLogo" Content="Remove Logo" HorizontalAlignment="Left" Margin="67,132,0,0" VerticalAlignment="Top" Click="removeLogo_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Categories">
+                <Grid Background="#FFE5E5E5">
+                    <Grid>
+                        <Button Content="Unpublish Empty Categories" HorizontalAlignment="Left" Margin="40,30,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <GroupBox Header="Log" Grid.Column="1" Margin="10">
+            <Border>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <TextBlock Margin="10" Padding="10, 10, 10, 10" Background="Beige"  Text="{Binding Log,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Window}}"  />
+                </ScrollViewer>
+            </Border>
+        </GroupBox>
+    </Grid>
+</Window>

@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>NopCommercePowertools</AssemblyName>
+    <RootNamespace>NopCommercePowertools</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.0" />
+    <PackageReference Include="NetVips" Version="1.1.0" />
+    <PackageReference Include="NetVips.Native.win-x64" Version="8.8.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\data-access\DataAccess.csproj" />
+  </ItemGroup>
+
+</Project>
