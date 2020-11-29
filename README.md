@@ -1,2 +1,2 @@
 # nopcommerce-powertools
-Powertools for use with the .Net eCommerce platform NopCommerce
+Powertools for use with the .net eCommerce platform NopCommerce
