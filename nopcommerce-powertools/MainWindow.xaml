@@ -13,12 +13,23 @@
         </Grid.ColumnDefinitions>
         <TabControl Grid.Column="0">
             <TabItem Header="Images">
-                <Grid Background="#FFE5E5E5">
-                    <TextBox Name="textBoxPath" Margin="67,42,23,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="22"/>
-                    <Label Content="Path: " HorizontalAlignment="Left" Margin="23,38,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Load Images" HorizontalAlignment="Left" Margin="67,69,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-                    <Button Name="removeLogo" Content="Remove Logo" HorizontalAlignment="Left" Margin="67,132,0,0" VerticalAlignment="Top" Click="removeLogo_Click"/>
-                </Grid>
+                <StackPanel>
+                    <GroupBox Header="Load Images">
+                        <Grid Margin="20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="110"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Content="Path: "   />
+                            <TextBox Grid.Column="1" Name="textBoxPath" TextWrapping="Wrap"  Height="30"/>
+                            <Button Grid.Column="2" Content="Load Images" Width="100" Margin="10 0 0 0"   Click="Button_Click"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Remove Logos">
+                        <Button Name="removeLogo" Content="Remove Logo" Padding="10 0 10 0" HorizontalAlignment="Left" Margin="20" Height="30" VerticalAlignment="Top" Click="removeLogo_Click"/>
+                    </GroupBox>
+                </StackPanel>
             </TabItem>
             <TabItem Header="Categories">
                 <Grid Background="#FFE5E5E5">
