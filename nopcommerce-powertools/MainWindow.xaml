@@ -4,42 +4,86 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RoofrackDataManager"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Nopcommerce Powertools" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="400*"></ColumnDefinition>
+            <ColumnDefinition Width="19"></ColumnDefinition>
+            <ColumnDefinition Width="381*"/>
         </Grid.ColumnDefinitions>
         <TabControl Grid.Column="0">
             <TabItem Header="Images">
-                <StackPanel>
-                    <GroupBox Header="Load Images">
-                        <Grid Margin="20">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="40"></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition Width="110"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Content="Path: "   />
-                            <TextBox Grid.Column="1" Name="textBoxPath" TextWrapping="Wrap"  Height="30"/>
-                            <Button Grid.Column="2" Content="Load Images" Width="100" Margin="10 0 0 0"   Click="Button_Click"/>
-                        </Grid>
-                    </GroupBox>
-                    <GroupBox Header="Remove Logos">
-                        <Button Name="removeLogo" Content="Remove Logo" Padding="10 0 10 0" HorizontalAlignment="Left" Margin="20" Height="30" VerticalAlignment="Top" Click="removeLogo_Click"/>
-                    </GroupBox>
-                </StackPanel>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <GroupBox Header="Load Images">
+                            <Grid Margin="20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="110"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Column="0" Content="Path: " VerticalContentAlignment="Center" HorizontalContentAlignment="Right"   />
+                                <TextBox Grid.Column="1" Grid.ColumnSpan="2" Name="textBoxPath" TextWrapping="Wrap"  Height="30"/>
+                                <Label Grid.Column="0" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">Thumbnail Size:</Label>
+                                <xctk:IntegerUpDown x:Name="thumbnailSize" Grid.Column="1" Grid.Row="1" Height="30" Width="100" HorizontalAlignment="Left" Minimum="1"></xctk:IntegerUpDown>
+                                <Button Grid.Column="2" Grid.Row="2" Content="Load Images" Width="100" Height="30" Margin="10 0 0 0" Click="LoadImages_Click"/>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="Match and Load Images" Padding="20">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Path: " VerticalContentAlignment="Center" HorizontalContentAlignment="Right"   />
+                                <TextBox Grid.Column="1" Grid.Row="0" Name="matchAndLoadImagesPath" TextWrapping="Wrap"  Height="30"/>
+                                <Label Grid.Column="0" Grid.Row="1" Content="Matching Values: " VerticalContentAlignment="Center" HorizontalContentAlignment="Right"></Label>
+                                <TextBox Grid.Column="1" Grid.Row="1" Name="matchAndLoadMatchingValues" TextWrapping="Wrap"  Height="30"/>
+                                <Button Grid.Column="1" Grid.Row="2" Width="150" HorizontalAlignment="Right" Height="30" Click="MatchAndLoadImages_Click">Match And Load Images</Button>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="Remove Watermark Logos" Padding="20">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center">Manucturer:</Label>
+                                <TextBox Grid.Row="0" Grid.Column="1" Height="30" Name="manufacturer"></TextBox>
+                                <Label Grid.Row="1" HorizontalContentAlignment="Right" VerticalContentAlignment="Center">Category:</Label>
+                                <TextBox Grid.Row="1" Grid.Column="1" Height="30" Name="category"></TextBox>
+                                <Button Grid.Row="2" Grid.Column="2" Name="removeLogo" Content="Remove Logo" Padding="10 0 10 0" HorizontalAlignment="Right" Height="30" Click="removeLogo_Click"/>
+                            </Grid>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Categories">
                 <Grid Background="#FFE5E5E5">
                     <Grid>
-                        <Button Content="Unpublish Empty Categories" HorizontalAlignment="Left" Margin="40,30,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+                        <Button Content="Unpublish Empty Categories" HorizontalAlignment="Left" Margin="40,30,0,0" VerticalAlignment="Top" Click="UnpublishEmptyCategories_Click"/>
                     </Grid>
                 </Grid>
             </TabItem>
         </TabControl>
-        <GroupBox Header="Log" Grid.Column="1" Margin="10">
+        <GroupBox Header="Log" Grid.Column="1" Margin="10,10,10,10" Grid.ColumnSpan="2">
             <Border>
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                     <TextBlock Margin="10" Padding="10, 10, 10, 10" Background="Beige"  Text="{Binding Log,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Window}}"  />

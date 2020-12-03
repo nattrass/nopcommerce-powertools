@@ -56,15 +56,16 @@ namespace RoofrackDataManager
                 handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private async void LoadImages_Click(object sender, RoutedEventArgs e)
         {
             var textBoxPathValue = textBoxPath.Text;
-            await Task.Run(() => LoadImages(textBoxPathValue));
+            var thumbnailSizeValue = thumbnailSize.Value;
+            await Task.Run(() => LoadImages(textBoxPathValue, thumbnailSizeValue.Value));
 
 
         }
 
-        private void LoadImages(string imagePath)
+        private void LoadImages(string imagePath, int thumbnailSize)
         {
             using (var context = new NopCommerceDbContext())
             {
@@ -92,7 +93,6 @@ namespace RoofrackDataManager
                                 }
 
                                 context.Pictures.Remove(productPicture.Picture);
-                                Console.WriteLine("Deleting Image");
                             }
 
                             productPictures.Clear();
@@ -109,8 +109,7 @@ namespace RoofrackDataManager
                                         fileExtension = ".jpg";
                                     }
 
-                                    Console.WriteLine($"Adding file: {file.Name}");
-                                    NetVips.Image smallerImage = NetVips.Image.Thumbnail(file.FullName, 400);
+                                    NetVips.Image smallerImage = NetVips.Image.Thumbnail(file.FullName, thumbnailSize);
 
                                     var picture = new Picture() { MimeType = $"image/{fileExtension.Replace(".", "")}" };
                                     context.Pictures.Add(picture);
@@ -138,7 +137,7 @@ namespace RoofrackDataManager
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void UnpublishEmptyCategories_Click(object sender, RoutedEventArgs e)
         {
             using (var context = new NopCommerceDbContext())
             {
@@ -232,11 +231,11 @@ namespace RoofrackDataManager
         {
             using (var context = new NopCommerceDbContext())
             {
-                var products = context.Products.Where(p => p.Product_Manufacturer_Mapping.Any(m => m.Manufacturer.Name == "Van Guard")).ToList();
+                var products = context.Products.Where(p => p.Product_Manufacturer_Mapping.Any(m => m.Manufacturer.Name == manufacturer.Text)).ToList();
 
                 foreach (var product in products)
                 {
-                    if (product.Product_Category_Mapping.Any(m => m.Category.Name == "Van Door Ladders"))
+                    if (product.Product_Category_Mapping.Any(m => m.Category.Name == category.Text))
                     {
 
                     }
@@ -253,6 +252,10 @@ namespace RoofrackDataManager
                     }
                 }
             }
+        }
+        private void MatchAndLoadImages_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
