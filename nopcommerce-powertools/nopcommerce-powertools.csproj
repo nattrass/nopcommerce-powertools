@@ -11,7 +11,7 @@
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.0" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.0.1" />
-    <PackageReference Include="NetVips" Version="1.2.4" />
+    <PackageReference Include="NetVips" Version="2.0.0" />
     <PackageReference Include="NetVips.Native.win-x64" Version="8.10.1" />
   </ItemGroup>
 
